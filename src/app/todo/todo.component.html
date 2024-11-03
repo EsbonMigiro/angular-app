@@ -1,0 +1,16 @@
+<h1>Todo list</h1>
+<!-- <p *ngIf="!todoItems().length">loading...</p> -->
+
+@if(!todoItems().length){
+<p>loading...</p>
+}
+<!-- <form> -->
+<label>Filter todo</label>
+<input [(ngModel)]="searchTodo" placeholder="Search todo.." />
+<!-- </form> -->
+
+<ul class="todos">
+  @for (todo of todoItems() |filterTodo: searchTodo() ; track $index) {
+  <app-todo-item (todoToggled)="updateTodoItems($event)" [todoItem]="todo" />
+  }
+</ul>
